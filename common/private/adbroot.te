@@ -1,6 +1,9 @@
 type adbroot, domain, coredomain;
 type adbroot_exec, exec_type, file_type, system_file_type;
 
+# adb_root is only installed with WITH_SU, which user builds don't set.
+# The types stay for the file and service contexts.
+userdebug_or_eng(`
 init_daemon_domain(adbroot)
 
 binder_use(adbroot)
@@ -15,3 +18,4 @@ allow adbroot adbroot_data_file:file create_file_perms;
 
 set_prop(adbroot, shell_prop)
 set_prop(adbroot, ctl_adbd_prop)
+')

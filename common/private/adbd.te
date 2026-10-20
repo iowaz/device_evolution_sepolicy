@@ -1,2 +1,5 @@
+# adb_root is only installed with WITH_SU, which user builds don't set
+userdebug_or_eng(`
 allow adbd adbroot:binder call;
 allow adbd adbroot_service:service_manager find;
+')
